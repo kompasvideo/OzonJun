@@ -1,11 +1,16 @@
 using FluentValidation.AspNetCore;
+using PriceCalculator.Api.NamingPolicies;
 using PriceCalculator.Bll;
 using PriceCalculator.Dal;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
-services.AddControllers();
+services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = new SnakeCaseNamingPolicy();
+    });
 services.AddEndpointsApiExplorer();
 
 // add swagger

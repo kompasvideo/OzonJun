@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Npgsql;
 using Npgsql.NameTranslation;
+using PriceCalculator.Dal.Entities;
+using PriceCalculator.Dal.Models;
 using PriceCalculator.Dal.Settings;
 
 namespace PriceCalculator.Dal.Infrastructure;
@@ -15,6 +17,9 @@ public static class Postgres
     {
         var mapper = NpgsqlConnection.GlobalTypeMapper;
         Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+
+        mapper.MapComposite<CalculationEntityV1>("calculations_v1", Translator);
+        mapper.MapComposite<GoodEntityV1>("goods_v1", Translator);
     }
 
     public static void AddMigrations(IServiceCollection services)

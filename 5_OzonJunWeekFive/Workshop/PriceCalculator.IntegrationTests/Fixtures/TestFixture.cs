@@ -3,11 +3,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PriceCalculator.Dal;
+using PriceCalculator.Dal.Repositories;
+using PriceCalculator.Dal.Repositories.Interfaces;
 
 namespace PriceCalculator.IntegrationTests.Fixtures;
 
 public class TestFixture
 {
+    public ICalculationsRepository CalculationsRepository { get; }
+    public IGoodsRepository  GoodsRepository  { get; }
     public TestFixture()
     {
         var config = new ConfigurationBuilder()
@@ -27,6 +31,8 @@ public class TestFixture
         host.MigrateUp();
         
         var serviceProvider = host.Services;
+        CalculationsRepository = serviceProvider.GetRequiredService<ICalculationsRepository>();
+        GoodsRepository  = serviceProvider.GetRequiredService<IGoodsRepository>();
     }
 
     private static void ClearDatabase(IHost host)

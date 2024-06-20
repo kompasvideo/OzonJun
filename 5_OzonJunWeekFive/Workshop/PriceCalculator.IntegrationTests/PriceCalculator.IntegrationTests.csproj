@@ -30,6 +30,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\PriceCalculator.Dal\PriceCalculator.Dal.csproj" />
+      <ProjectReference Include="..\test\PriceCalculator.TestingInfrastructure\PriceCalculator.TestingInfrastructure.csproj" />
     </ItemGroup>
 
 </Project>

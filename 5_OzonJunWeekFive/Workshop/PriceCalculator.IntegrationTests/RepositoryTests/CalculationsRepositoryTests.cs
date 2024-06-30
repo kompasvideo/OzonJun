@@ -1,4 +1,5 @@
-﻿using PriceCalculator.Dal.Models;
+﻿using FluentAssertions;
+using PriceCalculator.Dal.Models;
 using PriceCalculator.Dal.Repositories.Interfaces;
 using PriceCalculator.IntegrationTests.Fixtures;
 using TestingInfrastructure.Creators;

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using FluentAssertions;
 using PriceCalculator.Dal.Repositories.Interfaces;
 using PriceCalculator.IntegrationTests.Fixtures;
 using TestingInfrastructure.Creators;
@@ -69,8 +69,8 @@ public class GoodsRepositoryTests
             .ToArray();
         var expected = goods.Single();
         
-        var goodIds  = (await _goodsRepository.Add(goods, default))
-            .ToHashSet();
+        var goodId  = (await _goodsRepository.Add(goods, default))
+            .Single();
         
         // Act
         var foundGoods = await  _goodsRepository.Query(userId, default);
@@ -81,10 +81,10 @@ public class GoodsRepositoryTests
 
         good.Id.Should().Be(goodId);
         good.UserId.Should().Be(expected.UserId);
-        good.Height.Should().BeAproximately(expected.Height, _requiredDoublePrecision);
-        good.Width.Should().BeAproximately(expected.Width, _requiredDoublePrecision);
-        good.Length.Should().BeAproximately(expected.Length, _requiredDoublePrecision);
-        good.Weight.Should().BeAproximately(expected.Weight, _requiredDoublePrecision);
+        good.Height.Should().BeApproximately(expected.Height, _requiredDoublePrecision);
+        good.Width.Should().BeApproximately(expected.Width, _requiredDoublePrecision);
+        good.Length.Should().BeApproximately(expected.Length, _requiredDoublePrecision);
+        good.Weight.Should().BeApproximately(expected.Weight, _requiredDoublePrecision);
     }
     
     [Fact]

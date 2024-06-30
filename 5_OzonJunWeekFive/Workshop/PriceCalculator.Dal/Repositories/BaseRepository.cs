@@ -5,7 +5,7 @@ using PriceCalculator.Dal.Settings;
 
 namespace PriceCalculator.Dal.Repositories;
 
-public class BaseRepository : IDbRepository
+public abstract class BaseRepository : IDbRepository
 {
     private readonly DalOptions _dalSettings;
 

@@ -56,7 +56,7 @@ public class CalculationService : ICalculationService
     {
         volume = goods
             .Sum(x => x.Length + x.Width + x.Height);
-        return (decimal)volume = VolumeToPriceRatio
+        return (decimal)volume * VolumeToPriceRatio;
     }
     
     public decimal CalculatePriceByWeight(
@@ -65,12 +65,27 @@ public class CalculationService : ICalculationService
     {
         weight = goods
             .Sum(x => x.Weight);
-        return (decimal)weight = WeightToPriceRatio;
+        return (decimal)weight * WeightToPriceRatio;
     }
 
     public async Task<QueryCalculationModel[]> QueryCalculations(
-        QueryCalculationFilter query)
+        QueryCalculationFilter query,
+        CancellationToken token)
     {
-        var result = 
+        var result = await _calculationRepository.Query(new CaclulationHistoryFilter(
+            query.UserId,
+            query.Limit,
+            query.Offset),
+        token);
+        
+        return result
+            .Select(x => new QueryCalculationModel(
+                x.Id,
+                x.UserId,
+                x.TotalVolume,
+                x.TotalWeight,
+                x.Price,
+                x.GoodIds))
+            .ToArray();
     }
 }

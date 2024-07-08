@@ -121,9 +121,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{12D98F13-BCB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator.IntegrationTests", "5_OzonJunWeekFive\Workshop\PriceCalculator.IntegrationTests\PriceCalculator.IntegrationTests.csproj", "{439CDBA6-88C3-436B-85CD-2F679E8E00AF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator.TestingInfrastructure", "5_OzonJunWeekFive\Workshop\test\PriceCalculator.TestingInfrastructure\PriceCalculator.TestingInfrastructure.csproj", "{D2649420-E976-4C9F-8C98-828805444FCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator.UnitTests", "5_OzonJunWeekFive\Workshop\test\PriceCalculator.UnitTests\PriceCalculator.UnitTests.csproj", "{6A71781D-2A2E-426B-A66B-8D77FE2CBCA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator.IntegrationTests", "5_OzonJunWeekFive\Workshop\test\PriceCalculator.IntegrationTests\PriceCalculator.IntegrationTests.csproj", "{FBA03251-022B-4F33-80BA-5820EEABBF6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -275,14 +277,18 @@ Global
 		{32C27E04-5AEF-419C-84CC-11A0ED894B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32C27E04-5AEF-419C-84CC-11A0ED894B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32C27E04-5AEF-419C-84CC-11A0ED894B64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{439CDBA6-88C3-436B-85CD-2F679E8E00AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{439CDBA6-88C3-436B-85CD-2F679E8E00AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{439CDBA6-88C3-436B-85CD-2F679E8E00AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{439CDBA6-88C3-436B-85CD-2F679E8E00AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2649420-E976-4C9F-8C98-828805444FCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2649420-E976-4C9F-8C98-828805444FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2649420-E976-4C9F-8C98-828805444FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2649420-E976-4C9F-8C98-828805444FCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A71781D-2A2E-426B-A66B-8D77FE2CBCA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A71781D-2A2E-426B-A66B-8D77FE2CBCA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A71781D-2A2E-426B-A66B-8D77FE2CBCA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A71781D-2A2E-426B-A66B-8D77FE2CBCA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBA03251-022B-4F33-80BA-5820EEABBF6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA03251-022B-4F33-80BA-5820EEABBF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBA03251-022B-4F33-80BA-5820EEABBF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBA03251-022B-4F33-80BA-5820EEABBF6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -342,8 +348,9 @@ Global
 		{52A692FE-4318-4C10-9BA4-A1EBF47CD976} = {12D98F13-BCB9-45D8-98FB-EDB3D15C4B76}
 		{32C27E04-5AEF-419C-84CC-11A0ED894B64} = {12D98F13-BCB9-45D8-98FB-EDB3D15C4B76}
 		{CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29} = {84189D62-F52F-4A01-8238-24F9341E6C6B}
-		{439CDBA6-88C3-436B-85CD-2F679E8E00AF} = {CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29}
 		{D2649420-E976-4C9F-8C98-828805444FCF} = {CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29}
+		{6A71781D-2A2E-426B-A66B-8D77FE2CBCA2} = {CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29}
+		{FBA03251-022B-4F33-80BA-5820EEABBF6A} = {CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F33253C0-09C2-4BD7-8D47-48BF8988374B}

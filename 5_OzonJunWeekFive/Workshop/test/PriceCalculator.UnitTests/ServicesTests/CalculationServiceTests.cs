@@ -1,4 +1,7 @@
 ﻿using System.Data;
+using PriceCalculator.Bll.Services;
+using PriceCalculator.UnitTests.Builders;
+using PriceCalculator.UnitTests.Fakers;
 using TestingInfrastructure.Creators;
 using TestingInfrastructure.Fakers;
 
@@ -67,6 +70,42 @@ public class CalculationServiceTests
 
     [Fact]
     public void CalculationPriceByVolume_Success()
+    {
+        // Arrange
+        var goodModels = GoodModelFaker.Generate(5)
+            .TaArray();
+        
+        var builder = new CalculationServiceBuilder();
+        var service = builder.Build();
+        
+        // Act
+        var price = service.CalculationPriceByVolume(goodModels, out var volume);
+        
+        // Asserts
+        volume.Should().BeApproximately(goodModels.Sum(x => x.Height * x.Width * x.Length), price);
+        price.Should().Be((decimal)volume * CalculationService.VolumeToPriceRatio);
+    }
+    
+    [Fact]
+    public void CalculationPriceByWeight_Success()
+    {
+        // Arrange
+        var goodModels = GoodModelFaker.Generate(5)
+            .TaArray();
+        
+        var builder = new CalculationServiceBuilder();
+        var service = builder.Build();
+        
+        // Act
+        var price = service.CalculationPriceByWeight(goodModels, out var weight);
+        
+        // Asserts
+        weight.Should().Be(goodModels.Sum(x => x.Weight));
+        price.Should().Be((decimal)weight * CalculationService.WeightToPriceRatio);
+    }
+    
+    [Fact]
+    public async Task QueryCalculations_Success()
     {
         
     }

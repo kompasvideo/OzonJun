@@ -23,10 +23,17 @@ public class GetCalculationHistoryQueryHandlerTests
             .WithLimit(command.Limit)
             .WithOffset(command.Skip);
         
-        var builder
+        var builder = new GetCalculationHistoryHandlerBuilder();
+        builder.CalculationService
+            .SetupQueryCalculations(queryModels);
+        
+        var handler = builder.Build();
+        
         // Act
-        await handler.Handle(null!, default);
+        var result = await handler.Handle(command, default);
 
         // Assert
+        handler.CalculationService
+            
     }
 }

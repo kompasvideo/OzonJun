@@ -1,6 +1,6 @@
-﻿using System.Dynamic;
+﻿using System.Data;
 using TestingInfrastructure.Creators;
-using Xunit;
+using TestingInfrastructure.Fakers;
 
 namespace PriceCalculator.UnitTests.ServicesTests;
 
@@ -33,6 +33,41 @@ public class CalculationServiceTests
             .Single()
             .WithUserId(userId)
             .WithGoods(goodModels);
+
+        var calculations = CalculationEntityV1Faker.Generate(1)
+            .Select(x => x
+                    .WithId(calculationId)
+                    .WithUserId(userId)
+                    .WithPrice(calculationModel.Price)
+                    .WithTotalWeight(calculationModel.TotalWeight)
+                    .WithTotalVolume(calculationModel.TotalVolume))
+                .ToArray();
+        
+        var builder = new CalculationServiceBuilder();
+        builder.CalculationRepository
+            .SetupAddcalculations(new[] { calculationId })
+            .SetupCreateTransactionScope();
+        builder.GoodsRepository
+            .SetupAddGoods(goodIds);
+        
+        var service = builder.Build();
+        
+        // Act
+        var result = await service.SaveCalculation(calculationModel, default);
+        
+        // Assert
+        result.Should().Be(calculationId);
+        service.CalculationRepository
+            .VerifyAddWasCalledOnce(calculations)
+            .VerifyCreateTransactionScopeWasCalledOnce(IsolationLevel.ReadCommitted);
+        service.GoodsRepository
+            .VerifyAddWasCalledOnce(goodIds);
+        service.VerifyNotOtherCalls();
+    }
+
+    [Fact]
+    public void CalculationPriceByVolume_Success()
+    {
         
     }
 }

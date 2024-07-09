@@ -1,19 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="xunit.extensibility.core" Version="2.5.3" />
+        <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="FluentAssertions" Version="6.5.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.6.2" />
+        <PackageReference Include="xunit" Version="2.5.3"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PriceCalculator.TestingInfrastructure\PriceCalculator.TestingInfrastructure.csproj" />
+        <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\PriceCalculator.Api\appsettings.json">
+            <Link>appsettings.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\PriceCalculator.Dal\PriceCalculator.Dal.csproj" />
+        <ProjectReference Include="..\PriceCalculator.TestingInfrastructure\PriceCalculator.TestingInfrastructure.csproj" />
+        <ProjectReference Include="..\test\PriceCalculator.TestingInfrastructure\PriceCalculator.TestingInfrastructure.csproj" />
     </ItemGroup>
 
 </Project>

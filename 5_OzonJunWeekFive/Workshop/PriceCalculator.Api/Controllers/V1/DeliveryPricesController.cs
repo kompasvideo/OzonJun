@@ -1,16 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PriceCalculator.Api.Requests;
 using PriceCalculator.Api.Responses;
+using PriceCalculator.Bll.Commands;
+using PriceCalculator.Bll.Queries;
 
 namespace PriceCalculator.Api.Controllers.V1;
 
 [ApiController]
 [Route("/v1/delivery-prices")]
-public class DeliveryPricesController
+public class DeliveryPricesController : ControllerBase
 {
+    private readonly IMediator _mediator;
+
+    public DeliveryPricesController(
+        IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+    
     /// <summary>
     /// Метод расчёта стоимости доставки на основе объема товара
-    /// и цен товара. Окончательная стоимость принимается как наибольшая.
+    /// или веса товара. Окончательная стоимость принимается как наибольшая.
     /// </summary>
     /// <returns></returns>
     [HttpPost("valculate")]
@@ -18,8 +28,19 @@ public class DeliveryPricesController
         CalculateRequest request,
         CancellationToken ct)
     {
-        await Task.CompletedTask;
-        throw new NotImplementedException();
+        var command = new CalculateDeliveryPriceCommand(
+            request.UserId,
+            request.Goods
+                .Select(x => new GoodModel(
+                    x.Height,
+                    x.Length,
+                    x.Width,
+                    x.Weight))
+                .ToArray());
+        var result = await _mediator.Send(command, ct);
+        return new CalculateResponse(
+            result.CalculationId,
+            result.Price);
     }
     
     /// <summary>
@@ -34,8 +55,19 @@ public class DeliveryPricesController
         GetHistoryRequest request,
         CancellationToken ct)
     {
-        await Task.CompletedTask;
-        throw new NotImplementedException();
+       var query = new GetCalculationHistoryQuery(
+           request.UserId,
+           request.Take,
+           request.Skip);
+       var result = await _mediator.Send(query, ct);
+
+       return result.Items
+           .Select(x => new GetHistoryResponse(
+               new GetHistoryResponse.CargoResponse(
+                   x.Volume,
+                   x.Weight,
+                   x.GoodIds),
+               x.Price))
+           .ToArray();
     }
-    
 }

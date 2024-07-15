@@ -19,16 +19,16 @@ services.AddSwaggerGen(o =>
      o.CustomSchemaIds(x => x.FullName);
     });
 
-services
-    .AddBll()
-    .AddDalInfrastructure(builder.Configuration)
-    .AddDalRepositories();
-
 services.AddFluentValidation(conf =>
 {
     conf.RegisterValidatorsFromAssembly(typeof(Program).Assembly);
     conf.AutomaticValidationEnabled = true;
 });
+
+services
+    .AddBll()
+    .AddDalInfrastructure(builder.Configuration)
+    .AddDalRepositories();
 
 var app = builder.Build();
 

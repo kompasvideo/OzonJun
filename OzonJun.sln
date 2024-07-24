@@ -127,6 +127,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator.UnitTests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceCalculator.IntegrationTests", "5_OzonJunWeekFive\Workshop\test\PriceCalculator.IntegrationTests\PriceCalculator.IntegrationTests.csproj", "{FBA03251-022B-4F33-80BA-5820EEABBF6A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6_OzonJunWeekSix", "6_OzonJunWeekSix", "{A87447A2-EA2D-4B97-961A-8A2993AFBEEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{296E8000-56B0-4470-B310-3E2F8DF534C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kafka.Common", "6_OzonJunWeekSix\Workshop\Kafka.Common\Kafka.Common.csproj", "{1110526D-1D3D-4C00-971B-B0FB42B5B5E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{E97175D3-3808-4288-97A3-896F72FDEFA6}"
+	ProjectSection(SolutionItems) = preProject
+		6_OzonJunWeekSix\Workshop\common\docker-compose.yml = 6_OzonJunWeekSix\Workshop\common\docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -289,6 +300,10 @@ Global
 		{FBA03251-022B-4F33-80BA-5820EEABBF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBA03251-022B-4F33-80BA-5820EEABBF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBA03251-022B-4F33-80BA-5820EEABBF6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1110526D-1D3D-4C00-971B-B0FB42B5B5E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1110526D-1D3D-4C00-971B-B0FB42B5B5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1110526D-1D3D-4C00-971B-B0FB42B5B5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1110526D-1D3D-4C00-971B-B0FB42B5B5E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -351,6 +366,9 @@ Global
 		{D2649420-E976-4C9F-8C98-828805444FCF} = {CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29}
 		{6A71781D-2A2E-426B-A66B-8D77FE2CBCA2} = {CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29}
 		{FBA03251-022B-4F33-80BA-5820EEABBF6A} = {CA3C21A5-47E3-4E35-8FF3-D2B62BD11E29}
+		{296E8000-56B0-4470-B310-3E2F8DF534C5} = {A87447A2-EA2D-4B97-961A-8A2993AFBEEC}
+		{1110526D-1D3D-4C00-971B-B0FB42B5B5E0} = {296E8000-56B0-4470-B310-3E2F8DF534C5}
+		{E97175D3-3808-4288-97A3-896F72FDEFA6} = {296E8000-56B0-4470-B310-3E2F8DF534C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F33253C0-09C2-4BD7-8D47-48BF8988374B}
